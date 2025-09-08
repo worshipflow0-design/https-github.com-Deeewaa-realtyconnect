@@ -1,14 +1,11 @@
-
 'use client';
 
 import {
-  Home,
-  Search,
-  Package,
-  User,
-  Store,
   LayoutGrid,
+  Store,
+  Package,
   Settings,
+  LogOut,
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -24,30 +21,28 @@ import {
   SidebarSeparator,
 } from '@/components/ui/sidebar';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '../ui/button';
 
-const navItems = [
-  { href: '/home', icon: Home, label: 'Home' },
-  { href: '/search', icon: Search, label: 'Search' },
-  { href: '/orders', icon: Package, label: 'Orders' },
-  { href: '/profile', icon: User, label: 'Profile' },
-];
-
-const vendorItems = [
+const vendorNavItems = [
   { href: '/vendor/dashboard', icon: LayoutGrid, label: 'Dashboard' },
+  { href: '/vendor/products', icon: Store, label: 'Products' },
+  { href: '/vendor/orders', icon: Package, label: 'Orders' },
 ];
 
-export default function AppSidebar() {
+const settingsNavItems = [
+    { href: '/vendor/settings', icon: Settings, label: 'Settings' },
+];
+
+export default function VendorSidebar() {
   const pathname = usePathname();
 
   const isActive = (href: string) => {
-    return href === '/home' ? pathname === href : pathname.startsWith(href) && href !== '/';
+    return pathname.startsWith(href);
   };
 
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className="items-center justify-center p-3">
-        <Link href="/" className='flex items-center gap-2'>
+        <Link href="/vendor/dashboard" className='flex items-center gap-2'>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -68,7 +63,7 @@ export default function AppSidebar() {
       </SidebarHeader>
       <SidebarContent className="p-2">
         <SidebarMenu>
-          {navItems.map((item) => (
+          {vendorNavItems.map((item) => (
             <SidebarMenuItem key={item.label}>
               <SidebarMenuButton
                 asChild
@@ -84,11 +79,8 @@ export default function AppSidebar() {
           ))}
         </SidebarMenu>
         <SidebarSeparator />
-        <SidebarMenu>
-            <span className="px-2 text-xs font-semibold text-muted-foreground group-data-[collapsible=icon]:hidden">
-                Vendor
-            </span>
-           {vendorItems.map((item) => (
+         <SidebarMenu>
+           {settingsNavItems.map((item) => (
             <SidebarMenuItem key={item.label}>
               <SidebarMenuButton
                 asChild
@@ -105,14 +97,14 @@ export default function AppSidebar() {
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter className="p-2">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 group-data-[collapsible=icon]:justify-center">
           <Avatar className="size-8">
             <AvatarImage src="https://picsum.photos/100/100" data-ai-hint="person avatar" />
-            <AvatarFallback>U</AvatarFallback>
+            <AvatarFallback>V</AvatarFallback>
           </Avatar>
           <div className="flex flex-col group-data-[collapsible=icon]:hidden">
-            <span className="text-sm font-semibold">User</span>
-            <span className="text-xs text-muted-foreground">user@email.com</span>
+            <span className="text-sm font-semibold">Vendor User</span>
+            <span className="text-xs text-muted-foreground">vendor@email.com</span>
           </div>
         </div>
       </SidebarFooter>
