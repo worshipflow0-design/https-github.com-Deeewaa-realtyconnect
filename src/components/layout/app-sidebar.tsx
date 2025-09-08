@@ -86,6 +86,7 @@ export default function AppSidebar() {
               asChild
               variant="default"
               className="w-full justify-center"
+              tooltip="Switch to Selling"
             >
               <Link href="/vendor/dashboard">
                 <Store />
