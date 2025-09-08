@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'LocaliQ',
+  title: 'vendors',
   description: 'A cross-platform marketplace where vendors create stores and list products by category.',
 };
 

@@ -24,7 +24,7 @@ export default function LandingPage() {
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
               <circle cx="12" cy="10" r="3" />
             </svg>
-            <span className="text-xl font-bold font-headline">LocaliQ</span>
+            <span className="text-xl font-bold font-headline">vendors</span>
           </Link>
           <nav className="hidden items-center gap-6 md:flex">
             <Link href="#features" className="text-sm font-medium hover:text-primary transition-colors">Features</Link>
@@ -131,7 +131,7 @@ export default function LandingPage() {
       <footer className="border-t">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4 px-4 md:px-6 py-6">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} LocaliQ. All rights reserved.
+            &copy; {new Date().getFullYear()} vendors. All rights reserved.
           </p>
           <div className="flex gap-4">
             <Link href="#" className="text-sm hover:text-primary transition-colors">Privacy Policy</Link>

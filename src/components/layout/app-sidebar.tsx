@@ -64,7 +64,7 @@ export default function AppSidebar() {
             <circle cx="12" cy="10" r="3" />
           </svg>
           <span className="text-lg font-bold font-headline group-data-[collapsible=icon]:hidden">
-            LocaliQ
+            vendors
           </span>
         </Link>
       </SidebarHeader>
