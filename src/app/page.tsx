@@ -52,12 +52,15 @@ export default function LandingPage() {
             <p className="mt-6 text-lg md:text-xl text-muted-foreground">
               Discover and shop from the best local stores in your community. Fresh produce, unique crafts, and more—all in one place.
             </p>
-            <div className="mt-8 flex justify-center gap-4">
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Button size="lg" asChild>
                 <Link href="/signup">Get Started for Free</Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
                 <Link href="/home">Browse Marketplace</Link>
+              </Button>
+               <Button size="lg" variant="secondary" asChild>
+                <Link href="/vendor/dashboard">Become a Vendor</Link>
               </Button>
             </div>
           </div>
