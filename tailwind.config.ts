@@ -10,7 +10,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-sans)", "sans-serif"],
+        sans: ["Inter", "sans-serif"],
         headline: ['Inter', 'sans-serif'],
         code: ['monospace'],
       },
