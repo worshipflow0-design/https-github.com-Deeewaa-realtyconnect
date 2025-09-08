@@ -6,6 +6,7 @@ import {
   Package,
   Settings,
   LogOut,
+  ShoppingCart,
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -36,6 +37,14 @@ export default function VendorSidebar() {
   const pathname = usePathname();
 
   const isActive = (href: string) => {
+    // Exact match for dashboard, startsWith for others
+    if (href === '/vendor/dashboard') {
+        return pathname === href;
+    }
+    // Handle cases like /vendor/products/new
+    if (href === '/vendor/products') {
+        return pathname.startsWith('/vendor/products');
+    }
     return pathname.startsWith(href);
   };
 
@@ -94,6 +103,21 @@ export default function VendorSidebar() {
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
+        </SidebarMenu>
+        <SidebarSeparator />
+         <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              asChild
+              variant="outline"
+              className="w-full justify-center"
+            >
+              <Link href="/home">
+                <ShoppingCart />
+                <span>Switch to Buying</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter className="p-2">
