@@ -38,7 +38,7 @@ export type Product = {
   id: string;
   name: string;
   imageUrl: string;
-  price: string;
+  price: number;
   store: {
     name: string;
   };
@@ -188,12 +188,12 @@ export const stores: Store[] = [
 ];
 
 export const products: Product[] = [
-    { id: 'p1', name: 'Organic Avocados (3-pack)', imageUrl: 'https://picsum.photos/400/400?random=11', price: '$5.99', store: { name: 'GreenLeaf Organics'}, inventory: { stock: 20, lowStock: 5 }, rating: 4.9 },
-    { id: 'p2', name: 'Vintage Denim Jacket', imageUrl: 'https://picsum.photos/400/400?random=12', price: '$85.00', store: { name: 'Urban Threads' }, inventory: { stock: 4, lowStock: 3 }, rating: 4.7, variants: [ { id: 'v1', name: 'Size', options: {size: ['S', 'M', 'L']} }]},
-    { id: 'p3', name: 'Noise-Cancelling Headphones', imageUrl: 'https://picsum.photos/400/400?random=13', price: '$249.99', store: { name: 'GadgetHub' }, inventory: { stock: 15, lowStock: 3 }, rating: 4.9, variants: [ { id: 'v2', name: 'Color', options: { color: ['Black', 'White'] }} ]},
-    { id: 'p4', name: 'Fresh Sourdough Bread', imageUrl: 'https://picsum.photos/400/400?random=14', price: '$7.50', store: { name: 'GreenLeaf Organics' }, inventory: { stock: 0, lowStock: 5 }, rating: 4.8 },
-    { id: 'p5', name: 'Handmade Leather Tote', imageUrl: 'https://picsum.photos/400/400?random=15', price: '$150.00', store: { name: 'Urban Threads' }, inventory: { stock: 8, lowStock: 2 }, rating: 4.9 },
-    { id: 'p6', name: 'Smart WiFi Power Strip', imageUrl: 'https://picsum.photos/400/400?random=16', price: '$29.99', store: { name: 'GadgetHub' }, inventory: { stock: 10, lowStock: 3 }, rating: 4.7 },
+    { id: 'p1', name: 'Organic Avocados (3-pack)', imageUrl: 'https://picsum.photos/400/400?random=11', price: 5.99, store: { name: 'GreenLeaf Organics'}, inventory: { stock: 20, lowStock: 5 }, rating: 4.9 },
+    { id: 'p2', name: 'Vintage Denim Jacket', imageUrl: 'https://picsum.photos/400/400?random=12', price: 85.00, store: { name: 'Urban Threads' }, inventory: { stock: 4, lowStock: 3 }, rating: 4.7, variants: [ { id: 'v1', name: 'Size', options: {size: ['S', 'M', 'L']} }]},
+    { id: 'p3', name: 'Noise-Cancelling Headphones', imageUrl: 'https://picsum.photos/400/400?random=13', price: 249.99, store: { name: 'GadgetHub' }, inventory: { stock: 15, lowStock: 3 }, rating: 4.9, variants: [ { id: 'v2', name: 'Color', options: { color: ['Black', 'White'] }} ]},
+    { id: 'p4', name: 'Fresh Sourdough Bread', imageUrl: 'https://picsum.photos/400/400?random=14', price: 7.50, store: { name: 'GreenLeaf Organics' }, inventory: { stock: 0, lowStock: 5 }, rating: 4.8 },
+    { id: 'p5', name: 'Handmade Leather Tote', imageUrl: 'https://picsum.photos/400/400?random=15', price: 150.00, store: { name: 'Urban Threads' }, inventory: { stock: 8, lowStock: 2 }, rating: 4.9 },
+    { id: 'p6', name: 'Smart WiFi Power Strip', imageUrl: 'https://picsum.photos/400/400?random=16', price: 29.99, store: { name: 'GadgetHub' }, inventory: { stock: 10, lowStock: 3 }, rating: 4.7 },
 ];
 
 export const orders: Order[] = [

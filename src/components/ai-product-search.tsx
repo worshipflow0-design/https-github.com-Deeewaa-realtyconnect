@@ -63,18 +63,18 @@ export default function AiProductSearch() {
         className="flex w-full items-center space-x-2"
       >
         <div className="relative flex-grow">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
           <Input
             type="search"
             placeholder="Search for products with AI..."
-            className="pl-10 h-12 text-base"
+            className="pl-11 h-12 text-base bg-white/90 text-black placeholder:text-gray-500 focus:bg-white"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setTimeout(() => setIsFocused(false), 200)}
           />
         </div>
-        <Button type="submit" size="lg" className="h-12 bg-accent hover:bg-accent/90">
+        <Button type="submit" size="lg" className="h-12">
           <Search className="h-5 w-5" />
           <span className="sr-only">Search</span>
         </Button>
@@ -94,8 +94,8 @@ export default function AiProductSearch() {
             )}
             {!isPending && suggestions.length > 0 && (
               <>
-                <h4 className="text-sm font-semibold flex items-center mb-2">
-                  <Sparkles className="w-4 h-4 mr-2 text-primary" />
+                <h4 className="text-sm font-semibold flex items-center mb-2 text-primary">
+                  <Sparkles className="w-4 h-4 mr-2" />
                   AI Suggestions
                 </h4>
                 <ul className="space-y-1">
