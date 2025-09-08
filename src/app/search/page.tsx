@@ -14,7 +14,7 @@ function SearchResults() {
 
   const filteredProducts = products.filter(product => 
     product.name.toLowerCase().includes(query?.toLowerCase() ?? '') ||
-    product.storeName.toLowerCase().includes(query?.toLowerCase() ?? '')
+    product.store.name.toLowerCase().includes(query?.toLowerCase() ?? '')
   );
 
   return (
@@ -42,7 +42,7 @@ function SearchResults() {
                   />
                 </div>
                 <CardContent className="p-3">
-                    <p className="text-xs text-muted-foreground">{product.storeName}</p>
+                    <p className="text-xs text-muted-foreground">{product.store.name}</p>
                     <h3 className="font-semibold text-sm truncate group-hover:text-primary transition-colors">
                       {product.name}
                     </h3>

@@ -2,8 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Star, Phone, MessageCircle, MapPin, ExternalLink, Plus, Minus } from 'lucide-react';
+import { format } from 'date-fns';
 
-import { stores, products as allProducts } from '@/lib/data';
+import { stores, products as allProducts, Product } from '@/lib/data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -20,22 +21,26 @@ export default function StoreDetailPage({ params }: { params: { slug: string } }
     notFound();
   }
   
-  const storeProducts = allProducts.filter(p => p.storeName === store.name);
+  const storeProducts = allProducts.filter(p => p.store.name === store.name);
 
-  const StockBadge = ({ stock }: { stock: string }) => {
+  const StockBadge = ({ product }: { product: Product }) => {
     let variant: 'default' | 'secondary' | 'destructive' = 'default';
     let className = '';
-    if (stock === 'In Stock') {
-        variant = 'default';
-        className = 'bg-green-100 text-green-800 border-green-200';
-    } else if (stock === 'Low Stock') {
-        variant = 'secondary';
-        className = 'bg-yellow-100 text-yellow-800 border-yellow-200';
-    } else {
+    let text = 'In Stock';
+
+    if (product.inventory.stock <= 0) {
         variant = 'destructive';
         className = 'bg-red-100 text-red-800 border-red-200';
+        text = 'Out of Stock';
+    } else if (product.inventory.stock <= product.inventory.lowStock) {
+        variant = 'secondary';
+        className = 'bg-yellow-100 text-yellow-800 border-yellow-200';
+        text = 'Low Stock';
+    } else {
+        variant = 'default';
+        className = 'bg-green-100 text-green-800 border-green-200';
     }
-    return <Badge variant={variant} className={className}>{stock}</Badge>;
+    return <Badge variant={variant} className={className}>{text}</Badge>;
   };
 
   return (
@@ -93,7 +98,7 @@ export default function StoreDetailPage({ params }: { params: { slug: string } }
                     <CardContent className="p-4 space-y-3">
                         <div className="flex justify-between items-start">
                              <h3 className="font-semibold">{product.name}</h3>
-                             <StockBadge stock={product.stock} />
+                             <StockBadge product={product} />
                         </div>
                         <p className="text-lg font-bold">{product.price}</p>
                         
@@ -147,16 +152,17 @@ export default function StoreDetailPage({ params }: { params: { slug: string } }
                         <div key={review.id} className="flex gap-4">
                              <Avatar>
                                 <AvatarImage src={`https://picsum.photos/100/100?random=${review.id}`} data-ai-hint="person avatar" />
-                                <AvatarFallback>{review.author.charAt(0)}</AvatarFallback>
+                                <AvatarFallback>{review.customer.name.charAt(0)}</AvatarFallback>
                              </Avatar>
                              <div>
                                 <div className="flex items-center gap-2">
-                                    <h4 className="font-semibold">{review.author}</h4>
+                                    <h4 className="font-semibold">{review.customer.name}</h4>
                                     <div className="flex items-center">
                                         {[...Array(5)].map((_, i) => (
                                             <Star key={i} className={`w-4 h-4 ${i < review.rating ? 'text-yellow-400 fill-yellow-400' : 'text-muted-foreground'}`} />
                                         ))}
                                     </div>
+                                    <p className="text-xs text-muted-foreground">{format(new Date(review.createdAt), "PP")}</p>
                                 </div>
                                  <p className="text-muted-foreground mt-1">{review.comment}</p>
                              </div>

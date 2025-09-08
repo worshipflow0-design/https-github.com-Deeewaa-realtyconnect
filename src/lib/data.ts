@@ -26,7 +26,7 @@ export type Store = {
   lat: number;
   lng: number;
   hours: Record<string, string>;
-  reviews: { id: string, author: string, rating: number, comment: string }[];
+  reviews: Review[];
 };
 
 export type Category = {
@@ -39,14 +39,53 @@ export type Product = {
   name: string;
   imageUrl: string;
   price: string;
-  storeName: string;
-  stock: string;
+  store: {
+    name: string;
+  };
+  inventory: {
+    stock: number;
+    lowStock: number;
+  };
   rating: number;
-  options?: {
-    size?: string[];
-    color?: string[];
-  }
+  variants?: Variant[];
 };
+
+export type Variant = {
+  id: string;
+  name: string;
+  options: Record<string, any>;
+  sku?: string;
+  barcode?: string;
+}
+
+export type Order = {
+  id: string;
+  code: string;
+  customer: { name: string };
+  store: { name: string };
+  status: "PENDING" | "CONFIRMED" | "READY" | "SHIPPED" | "COMPLETED" | "CANCELED";
+  paymentState: "UNPAID" | "PENDING" | "PAID" | "FAILED" | "REFUNDED";
+  totals: { total: number };
+  deliveryMethod: "PICKUP" | "DELIVERY";
+  items: OrderItem[];
+  createdAt: string;
+};
+
+export type OrderItem = {
+  id: string;
+  name: string;
+  qty: number;
+  unitPrice: number;
+}
+
+export type Review = {
+  id: string;
+  customer: { name: string };
+  rating: number;
+  comment?: string;
+  createdAt: string;
+};
+
 
 export const categories: Category[] = [
   { name: 'Groceries', icon: Carrot },
@@ -85,7 +124,7 @@ export const stores: Store[] = [
       Sun: '10 AM - 6 PM'
     },
     reviews: [
-        { id: 'r1', author: 'Jane Doe', rating: 5, comment: 'Always fresh and amazing quality!'}
+        { id: 'r1', customer: { name: 'Jane Doe' }, rating: 5, comment: 'Always fresh and amazing quality!', createdAt: '2024-07-20T10:30:00Z' }
     ]
   },
   {
@@ -114,7 +153,7 @@ export const stores: Store[] = [
       Sun: '12 PM - 5 PM'
     },
     reviews: [
-        { id: 'r2', author: 'John Smith', rating: 4, comment: 'Great finds, a bit pricey but worth it.'}
+        { id: 'r2', customer: { name: 'John Smith' }, rating: 4, comment: 'Great finds, a bit pricey but worth it.', createdAt: '2024-07-18T14:00:00Z'}
     ]
   },
   {
@@ -143,16 +182,76 @@ export const stores: Store[] = [
       Sun: '11 AM - 7 PM'
     },
     reviews: [
-        { id: 'r3', author: 'Sam Wilson', rating: 5, comment: 'Best customer service and prices in town!'}
+        { id: 'r3', customer: { name: 'Sam Wilson' }, rating: 5, comment: 'Best customer service and prices in town!', createdAt: '2024-07-19T11:00:00Z'}
     ]
   },
 ];
 
 export const products: Product[] = [
-    { id: 'p1', name: 'Organic Avocados (3-pack)', imageUrl: 'https://picsum.photos/400/400?random=11', price: '$5.99', storeName: 'GreenLeaf Organics', stock: 'In Stock', rating: 4.9 },
-    { id: 'p2', name: 'Vintage Denim Jacket', imageUrl: 'https://picsum.photos/400/400?random=12', price: '$85.00', storeName: 'Urban Threads', stock: 'Low Stock', rating: 4.7, options: { size: ['S', 'M', 'L'] }},
-    { id: 'p3', name: 'Noise-Cancelling Headphones', imageUrl: 'https://picsum.photos/400/400?random=13', price: '$249.99', storeName: 'GadgetHub', stock: 'In Stock', rating: 4.9, options: { color: ['Black', 'White'] }},
-    { id: 'p4', name: 'Fresh Sourdough Bread', imageUrl: 'https://picsum.photos/400/400?random=14', price: '$7.50', storeName: 'GreenLeaf Organics', stock: 'Out of Stock', rating: 4.8 },
-    { id: 'p5', name: 'Handmade Leather Tote', imageUrl: 'https://picsum.photos/400/400?random=15', price: '$150.00', storeName: 'Urban Threads', stock: 'In Stock', rating: 4.9 },
-    { id: 'p6', name: 'Smart WiFi Power Strip', imageUrl: 'https://picsum.photos/400/400?random=16', price: '$29.99', storeName: 'GadgetHub', stock: 'In Stock', rating: 4.7 },
+    { id: 'p1', name: 'Organic Avocados (3-pack)', imageUrl: 'https://picsum.photos/400/400?random=11', price: '$5.99', store: { name: 'GreenLeaf Organics'}, inventory: { stock: 20, lowStock: 5 }, rating: 4.9 },
+    { id: 'p2', name: 'Vintage Denim Jacket', imageUrl: 'https://picsum.photos/400/400?random=12', price: '$85.00', store: { name: 'Urban Threads' }, inventory: { stock: 4, lowStock: 3 }, rating: 4.7, variants: [ { id: 'v1', name: 'Size', options: {size: ['S', 'M', 'L']} }]},
+    { id: 'p3', name: 'Noise-Cancelling Headphones', imageUrl: 'https://picsum.photos/400/400?random=13', price: '$249.99', store: { name: 'GadgetHub' }, inventory: { stock: 15, lowStock: 3 }, rating: 4.9, variants: [ { id: 'v2', name: 'Color', options: { color: ['Black', 'White'] }} ]},
+    { id: 'p4', name: 'Fresh Sourdough Bread', imageUrl: 'https://picsum.photos/400/400?random=14', price: '$7.50', store: { name: 'GreenLeaf Organics' }, inventory: { stock: 0, lowStock: 5 }, rating: 4.8 },
+    { id: 'p5', name: 'Handmade Leather Tote', imageUrl: 'https://picsum.photos/400/400?random=15', price: '$150.00', store: { name: 'Urban Threads' }, inventory: { stock: 8, lowStock: 2 }, rating: 4.9 },
+    { id: 'p6', name: 'Smart WiFi Power Strip', imageUrl: 'https://picsum.photos/400/400?random=16', price: '$29.99', store: { name: 'GadgetHub' }, inventory: { stock: 10, lowStock: 3 }, rating: 4.7 },
+];
+
+export const orders: Order[] = [
+    {
+      id: "1",
+      code: "#3210",
+      customer: { name: "User" },
+      store: { name: "GreenLeaf Organics" },
+      status: "COMPLETED",
+      paymentState: "PAID",
+      totals: { total: 42.50 },
+      deliveryMethod: "PICKUP",
+      items: [
+        { id: "oi1", name: "Organic Avocados (3-pack)", qty: 1, unitPrice: 5.99 },
+        { id: "oi2", name: "Fresh Sourdough Bread", qty: 2, unitPrice: 7.50 },
+      ],
+      createdAt: "2024-07-20T10:00:00Z",
+    },
+    {
+      id: "2",
+      code: "#3209",
+      customer: { name: "User" },
+      store: { name: "Urban Threads Boutique" },
+      status: "CANCELED",
+      paymentState: "REFUNDED",
+      totals: { total: 120.00 },
+      deliveryMethod: "DELIVERY",
+      items: [
+        { id: "oi3", name: "Vintage Denim Jacket", qty: 1, unitPrice: 85.00 },
+      ],
+      createdAt: "2024-07-18T11:30:00Z",
+    },
+    {
+        id: "3",
+        code: "#3205",
+        customer: { name: "User" },
+        store: { name: "GadgetHub" },
+        status: "COMPLETED",
+        paymentState: "PAID",
+        totals: { total: 249.99 },
+        deliveryMethod: "DELIVERY",
+        items: [
+            { id: "oi4", name: "Noise-Cancelling Headphones", qty: 1, unitPrice: 249.99 },
+        ],
+        createdAt: "2024-07-15T14:00:00Z",
+    },
+    {
+        id: "4",
+        code: "#3201",
+        customer: { name: "User" },
+        store: { name: "GreenLeaf Organics" },
+        status: "COMPLETED",
+        paymentState: "PAID",
+        totals: { total: 15.75 },
+        deliveryMethod: "PICKUP",
+        items: [
+            { id: "oi5", name: "Organic Avocados (3-pack)", qty: 1, unitPrice: 5.99 },
+        ],
+        createdAt: "2024-07-12T09:00:00Z",
+    }
 ];

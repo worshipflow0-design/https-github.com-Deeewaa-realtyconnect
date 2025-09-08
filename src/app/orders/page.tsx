@@ -2,13 +2,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Package } from "lucide-react";
-
-const orders = [
-  { id: "#3210", date: "July 20, 2024", status: "Delivered", total: "$42.50", store: "GreenLeaf Organics" },
-  { id: "#3209", date: "July 18, 2024", status: "Cancelled", total: "$120.00", store: "Urban Threads Boutique" },
-  { id: "#3205", date: "July 15, 2024", status: "Delivered", total: "$249.99", store: "GadgetHub" },
-  { id: "#3201", date: "July 12, 2024", status: "Delivered", total: "$15.75", store: "GreenLeaf Organics" },
-];
+import { orders } from "@/lib/data";
+import { format } from "date-fns";
 
 export default function OrdersPage() {
   return (
@@ -34,22 +29,22 @@ export default function OrdersPage() {
           <TableBody>
             {orders.map((order) => (
               <TableRow key={order.id}>
-                <TableCell className="font-medium">{order.id}</TableCell>
-                <TableCell>{order.store}</TableCell>
-                <TableCell>{order.date}</TableCell>
+                <TableCell className="font-medium">{order.code}</TableCell>
+                <TableCell>{order.store.name}</TableCell>
+                <TableCell>{format(new Date(order.createdAt), "PPP")}</TableCell>
                 <TableCell>
                   <Badge 
                     variant={
-                      order.status === "Delivered" ? "default" :
-                      order.status === "Cancelled" ? "destructive" :
+                      order.status === "COMPLETED" ? "default" :
+                      order.status === "CANCELED" ? "destructive" :
                       "secondary"
                     }
-                    className={order.status === "Delivered" ? "bg-green-600" : ""}
+                    className={order.status === "COMPLETED" ? "bg-green-600 capitalize" : "capitalize"}
                   >
-                    {order.status}
+                    {order.status.toLowerCase()}
                   </Badge>
                 </TableCell>
-                <TableCell className="text-right">{order.total}</TableCell>
+                <TableCell className="text-right">${order.totals.total.toFixed(2)}</TableCell>
               </TableRow>
             ))}
           </TableBody>

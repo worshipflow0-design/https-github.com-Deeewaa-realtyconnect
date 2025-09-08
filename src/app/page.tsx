@@ -100,7 +100,7 @@ export default function Home() {
                   />
                 </div>
                 <CardContent className="p-3">
-                    <p className="text-xs text-muted-foreground">{product.storeName}</p>
+                    <p className="text-xs text-muted-foreground">{product.store.name}</p>
                     <h3 className="font-semibold text-sm truncate group-hover:text-primary transition-colors">
                       {product.name}
                     </h3>
