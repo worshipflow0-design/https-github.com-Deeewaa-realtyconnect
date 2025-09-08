@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Store, PlusCircle } from "lucide-react";
 import { products } from "@/lib/data";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function VendorProductsPage() {
   return (
@@ -23,9 +24,11 @@ export default function VendorProductsPage() {
                 <CardTitle>All Products</CardTitle>
                 <CardDescription>View and manage all products in your inventory.</CardDescription>
             </div>
-            <Button>
-                <PlusCircle className="mr-2" />
-                Add Product
+            <Button asChild>
+                <Link href="/vendor/products/new">
+                    <PlusCircle className="mr-2" />
+                    Add Product
+                </Link>
             </Button>
         </CardHeader>
         <CardContent>
