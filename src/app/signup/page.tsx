@@ -19,7 +19,7 @@ export default function SignUpPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold font-headline">Create an Account</CardTitle>
-          <CardDescription>Join LocaliQ to start shopping from local vendors.</CardDescription>
+          <CardDescription>Join vendors to start shopping from local vendors.</CardDescription>
         </CardHeader>
         <CardContent>
           <form className="space-y-4">
@@ -45,13 +45,13 @@ export default function SignUpPage() {
               <Label htmlFor="confirm-password">Confirm Password</Label>
               <Input id="confirm-password" type="password" required />
             </div>
-            <Button type="submit" className="w-full">
-              Create Account
+            <Button type="submit" className="w-full" asChild>
+              <Link href="/home">Create Account</Link>
             </Button>
           </form>
           <div className="mt-4 text-center text-sm">
             Already have an account?{" "}
-            <Link href="/home" className="font-semibold text-primary hover:underline">
+            <Link href="/signup" className="font-semibold text-primary hover:underline">
               Log in
             </Link>
           </div>

@@ -22,6 +22,7 @@ import {
   SidebarSeparator,
 } from '@/components/ui/sidebar';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '../ui/button';
 
 const vendorNavItems = [
   { href: '/vendor/dashboard', icon: LayoutGrid, label: 'Dashboard' },
@@ -111,10 +112,24 @@ export default function VendorSidebar() {
               asChild
               variant="outline"
               className="w-full justify-center"
+              tooltip="Switch to Buying"
             >
               <Link href="/home">
                 <ShoppingCart />
                 <span>Switch to Buying</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          <SidebarMenuItem>
+             <SidebarMenuButton
+              asChild
+              variant="outline"
+              className="w-full justify-center"
+              tooltip="Log Out"
+            >
+              <Link href="/">
+                <LogOut />
+                <span>Log Out</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>

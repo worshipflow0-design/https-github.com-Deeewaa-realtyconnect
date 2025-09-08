@@ -33,7 +33,7 @@ export default function LandingPage() {
           </nav>
           <div className="flex items-center gap-4">
             <Button variant="ghost" asChild>
-              <Link href="/home">Log In</Link>
+              <Link href="/signup">Log In</Link>
             </Button>
             <Button asChild>
               <Link href="/signup">Sign Up <ArrowRight className="ml-2 h-4 w-4" /></Link>
@@ -57,10 +57,10 @@ export default function LandingPage() {
                 <Link href="/signup">Get Started for Free</Link>
               </Button>
               <Button size="lg" variant="outline" asChild>
-                <Link href="/home">Browse Marketplace</Link>
+                <Link href="/signup">Browse Marketplace</Link>
               </Button>
                <Button size="lg" variant="secondary" asChild>
-                <Link href="/vendor/dashboard">Become a Vendor</Link>
+                <Link href="/vendor/onboarding">Become a Vendor</Link>
               </Button>
             </div>
           </div>
