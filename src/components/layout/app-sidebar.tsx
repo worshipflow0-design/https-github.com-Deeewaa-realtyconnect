@@ -33,10 +33,6 @@ const navItems = [
   { href: '/profile', icon: User, label: 'Profile' },
 ];
 
-const vendorItems = [
-  { href: '/vendor/dashboard', icon: LayoutGrid, label: 'Dashboard' },
-];
-
 export default function AppSidebar() {
   const pathname = usePathname();
 
@@ -85,23 +81,18 @@ export default function AppSidebar() {
         </SidebarMenu>
         <SidebarSeparator />
         <SidebarMenu>
-            <span className="px-2 text-xs font-semibold text-muted-foreground group-data-[collapsible=icon]:hidden">
-                Vendor
-            </span>
-           {vendorItems.map((item) => (
-            <SidebarMenuItem key={item.label}>
-              <SidebarMenuButton
-                asChild
-                isActive={isActive(item.href)}
-                tooltip={item.label}
-              >
-                <Link href={item.href}>
-                  <item.icon />
-                  <span>{item.label}</span>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              asChild
+              variant="outline"
+              className="w-full justify-center"
+            >
+              <Link href="/vendor/dashboard">
+                <Store />
+                <span>Switch to Selling</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter className="p-2">
