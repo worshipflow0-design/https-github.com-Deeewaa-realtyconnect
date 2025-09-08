@@ -84,7 +84,7 @@ export default function AppSidebar() {
           <SidebarMenuItem>
             <SidebarMenuButton
               asChild
-              variant="outline"
+              variant="default"
               className="w-full justify-center"
             >
               <Link href="/vendor/dashboard">
