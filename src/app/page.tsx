@@ -11,7 +11,7 @@ export default function Home() {
     <div className="space-y-12">
       <section className="text-center bg-card p-8 rounded-xl shadow-md">
         <h1 className="text-4xl font-bold font-headline tracking-tight text-primary">
-          vendors
+          welcome to vendors
         </h1>
         <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
           Your one-stop marketplace for local goods. Find everything you need from stores near you.
