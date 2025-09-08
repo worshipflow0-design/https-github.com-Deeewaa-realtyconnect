@@ -30,7 +30,8 @@ export type Store = {
 };
 
 export type Category = {
-  name:string;
+  name: string;
+  slug: string;
   icon: LucideIcon;
 };
 
@@ -88,13 +89,13 @@ export type Review = {
 
 
 export const categories: Category[] = [
-  { name: 'Groceries', icon: Carrot },
-  { name: 'Restaurants', icon: UtensilsCrossed },
-  { name: 'Fashion', icon: Shirt },
-  { name: 'Electronics', icon: Sparkles },
-  { name: 'Butchery', icon: Bone },
-  { name: 'Fruits', icon: Apple },
-  { name: 'Jewelry', icon: Gem },
+  { name: 'Groceries', slug: 'groceries', icon: Carrot },
+  { name: 'Restaurants', slug: 'restaurants', icon: UtensilsCrossed },
+  { name: 'Fashion', slug: 'fashion', icon: Shirt },
+  { name: 'Electronics', slug: 'electronics', icon: Sparkles },
+  { name: 'Butchery', slug: 'butchery', icon: Bone },
+  { name: 'Fruits', slug: 'fruits', icon: Apple },
+  { name: 'Jewelry', slug: 'jewelry', icon: Gem },
 ];
 
 export const stores: Store[] = [];

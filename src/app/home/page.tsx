@@ -37,7 +37,7 @@ export default function HomePage() {
         <h2 className="text-3xl font-bold font-headline mb-8 text-center">Browse by Category</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4 md:gap-6">
           {categories.map((category) => (
-            <Link href="#" key={category.name}>
+            <Link href={`/category/${category.slug}`} key={category.name}>
               <div className="group flex flex-col items-center justify-center space-y-2 p-4 rounded-lg hover:bg-muted transition-colors duration-200">
                 <div className="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center transition-transform group-hover:scale-110">
                   <category.icon className="w-8 h-8" />
