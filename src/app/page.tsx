@@ -47,7 +47,7 @@ export default function LandingPage() {
         <section className="container mx-auto px-4 md:px-6 py-20 md:py-32 text-center">
           <div className="max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-6xl font-bold font-headline tracking-tight">
-              The Hub for Your Local Favorites
+              The Hub for Your Local stores
             </h1>
             <p className="mt-6 text-lg md:text-xl text-muted-foreground">
               Discover and shop from the best local stores in your community. Fresh produce, unique crafts, and more—all in one place.
