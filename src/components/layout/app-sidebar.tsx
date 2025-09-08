@@ -27,7 +27,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '../ui/button';
 
 const navItems = [
-  { href: '/', icon: Home, label: 'Home' },
+  { href: '/home', icon: Home, label: 'Home' },
   { href: '/search', icon: Search, label: 'Search' },
   { href: '/orders', icon: Package, label: 'Orders' },
   { href: '/profile', icon: User, label: 'Profile' },
@@ -43,28 +43,30 @@ export default function AppSidebar() {
   const pathname = usePathname();
 
   const isActive = (href: string) => {
-    return href === '/' ? pathname === href : pathname.startsWith(href);
+    return href === '/home' ? pathname === href : pathname.startsWith(href) && href !== '/';
   };
 
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className="items-center justify-center p-3">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          className="w-8 h-8 text-primary"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-          <circle cx="12" cy="10" r="3" />
-        </svg>
-        <span className="text-lg font-bold font-headline group-data-[collapsible=icon]:hidden">
-          LocaliQ
-        </span>
+        <Link href="/" className='flex items-center gap-2'>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            className="w-8 h-8 text-primary"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          <span className="text-lg font-bold font-headline group-data-[collapsible=icon]:hidden">
+            LocaliQ
+          </span>
+        </Link>
       </SidebarHeader>
       <SidebarContent className="p-2">
         <SidebarMenu>
