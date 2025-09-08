@@ -31,6 +31,23 @@ export default {
         '88': '22rem',
         '128': '32rem',
       },
+      fontSize: {
+        'xs': ['0.75rem', { lineHeight: '1.5', letterSpacing: '0.025em' }],
+        'sm': ['0.875rem', { lineHeight: '1.5', letterSpacing: '0.016em' }],
+        'base': ['1rem', { lineHeight: '1.6', letterSpacing: '0.011em' }],
+        'lg': ['1.125rem', { lineHeight: '1.6', letterSpacing: '0.008em' }],
+        'xl': ['1.25rem', { lineHeight: '1.5', letterSpacing: '0.006em' }],
+        '2xl': ['1.5rem', { lineHeight: '1.4', letterSpacing: '-0.011em' }],
+        '3xl': ['1.875rem', { lineHeight: '1.3', letterSpacing: '-0.014em' }],
+        '4xl': ['2.25rem', { lineHeight: '1.2', letterSpacing: '-0.017em' }],
+        '5xl': ['3rem', { lineHeight: '1.1', letterSpacing: '-0.019em' }],
+        '6xl': ['3.75rem', { lineHeight: '1', letterSpacing: '-0.021em' }],
+      },
+      spacing: {
+        '18': '4.5rem',
+        '88': '22rem',
+        '128': '32rem',
+      },
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',

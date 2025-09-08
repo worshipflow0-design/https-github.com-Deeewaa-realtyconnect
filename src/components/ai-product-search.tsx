@@ -66,15 +66,15 @@ export default function AiProductSearch() {
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
           <Input
             type="search"
-            placeholder="Search for products with AI..."
-            className="pl-11 h-12 text-base bg-white/90 text-black placeholder:text-gray-500 focus:bg-white"
+            placeholder="Search for products with AI assistance..."
+            className="pl-11 h-14 text-base bg-white/95 backdrop-blur-sm text-black placeholder:text-gray-500 focus:bg-white border-white/20 shadow-lg"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setTimeout(() => setIsFocused(false), 200)}
           />
         </div>
-        <Button type="submit" size="lg" className="h-12">
+        <Button type="submit" size="lg" className="h-14 px-6 shadow-lg hover-lift">
           <Search className="h-5 w-5" />
           <span className="sr-only">Search</span>
         </Button>
@@ -84,27 +84,27 @@ export default function AiProductSearch() {
         "absolute top-full mt-2 w-full z-10 transition-opacity duration-300",
         showSuggestions ? 'opacity-100' : 'opacity-0 pointer-events-none'
       )}>
-        <Card className="shadow-2xl">
-          <CardContent className="p-4">
+        <Card className="shadow-2xl border-0 glass-effect">
+          <CardContent className="p-6">
             {isPending && (
-              <div className="flex items-center justify-center p-4">
+              <div className="flex items-center justify-center p-6">
                 <Loader2 className="h-6 w-6 animate-spin text-primary" />
-                <p className="ml-3 text-muted-foreground">AI is thinking...</p>
+                <p className="ml-3 text-muted-foreground font-medium">AI is thinking...</p>
               </div>
             )}
             {!isPending && suggestions.length > 0 && (
               <>
-                <h4 className="text-sm font-semibold flex items-center mb-2 text-primary">
+                <h4 className="text-sm font-semibold flex items-center mb-4 text-primary">
                   <Sparkles className="w-4 h-4 mr-2" />
                   AI Suggestions
                 </h4>
-                <ul className="space-y-1">
+                <ul className="space-y-2">
                   {suggestions.map((suggestion, index) => (
                     <li key={index}>
                       <button
                         type="button"
                         onClick={() => handleSearch(suggestion)}
-                        className="w-full text-left p-2 rounded-md hover:bg-muted text-sm"
+                        className="w-full text-left p-3 rounded-lg hover:bg-muted/50 text-sm transition-smooth font-medium"
                       >
                         {suggestion}
                       </button>
