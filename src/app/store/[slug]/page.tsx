@@ -110,7 +110,7 @@ export default function StoreDetailPage({ params }: { params: { slug: string } }
                              <h3 className="font-semibold flex-1">{product.name}</h3>
                              <StockBadge product={product} />
                         </div>
-                        <p className="text-lg font-bold">${product.price.toFixed(2)}</p>
+                        <p className="text-lg font-bold">K{product.price.toFixed(2)}</p>
                         
                         <div className="flex items-center justify-between mt-auto pt-4">
                             <div className="flex items-center gap-2">

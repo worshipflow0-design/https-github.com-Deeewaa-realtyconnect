@@ -44,7 +44,7 @@ export default function OrdersPage() {
                     {order.status.toLowerCase()}
                   </Badge>
                 </TableCell>
-                <TableCell className="text-right">${order.totals.total.toFixed(2)}</TableCell>
+                <TableCell className="text-right">K{order.totals.total.toFixed(2)}</TableCell>
               </TableRow>
             ))}
           </TableBody>

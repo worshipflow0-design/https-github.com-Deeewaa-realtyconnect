@@ -46,7 +46,7 @@ function SearchResults() {
                     <h3 className="font-semibold text-sm truncate group-hover:text-primary transition-colors">
                       {product.name}
                     </h3>
-                    <p className="font-bold text-base mt-1">${product.price.toFixed(2)}</p>
+                    <p className="font-bold text-base mt-1">K{product.price.toFixed(2)}</p>
                 </CardContent>
               </Card>
             </Link>

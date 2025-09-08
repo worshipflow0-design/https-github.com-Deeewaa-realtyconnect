@@ -66,7 +66,7 @@ export default function VendorProductsPage() {
                                 </Badge>
                             </TableCell>
                             <TableCell>{product.inventory.stock}</TableCell>
-                            <TableCell className="text-right">${product.price.toFixed(2)}</TableCell>
+                            <TableCell className="text-right">K{product.price.toFixed(2)}</TableCell>
                         </TableRow>
                     ))
                 )}
